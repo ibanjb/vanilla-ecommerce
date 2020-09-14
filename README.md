@@ -7,7 +7,7 @@
 Ecommerce exercise done with ES6 and Webpack
 
 Original mockup:
-![Original mockup](screenshot.png)
+![Original mockup](./doc/screenshot.png)
 
 ## Tech stack
 
