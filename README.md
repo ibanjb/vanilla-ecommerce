@@ -19,7 +19,7 @@ There are three different products in the checkout page: Goku, Naruto and Jawa p
 
 ![Home](./doc/home.png)
 
-The store applies some discounts for a couple of productts:
+The store applies some discounts for a couple of products:
 
 - Goku POP product has a 2x1 offer.
 - Naruto POP product has a discount of -1€ for each three products recursively.
@@ -45,6 +45,6 @@ yarn start               # starts local server with hot reloading
 
 ## Github repository
 
-![GitHub Logo](githubLogo.png)
+![GitHub Logo](./doc/githubLogo.png)
 
 <a href="https://github.com/ibanjb/vanilla-ecommerce">Navigate to the Github page</a>
