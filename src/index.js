@@ -130,59 +130,63 @@ const updateOrderSummary = () => {
   updateTotals();
 };
 
+const updateProduct = (
+  operation,
+  originalQuantity,
+  productPrice,
+  inputElement,
+  totalElement
+) => {
+  let units = originalQuantity;
+  if (operation === action.add) {
+    units += 1;
+  } else if (originalQuantity > 0) {
+    units -= 1;
+  }
+  const price = units > 0 ? units * productPrice : 0;
+  updateValue(inputElement, units);
+  updateInnerText(totalElement, `${price} €`);
+  return units;
+};
+
 const productAction = (type, operation) => {
-  let units = 0;
-  let price = 0;
-  let inputElement;
-  let totalElement;
   switch (type) {
-    case product.goku:
-      if (operation === action.add) {
-        shoppingCart.gokuQuantity += 1;
-      } else if (shoppingCart.gokuQuantity > 0) {
-        shoppingCart.gokuQuantity -= 1;
-      }
-      units = shoppingCart.gokuQuantity;
-      price =
-        shoppingCart.gokuQuantity > 0
-          ? shoppingCart.gokuQuantity * prices.goku
-          : 0;
-      inputElement = 'goku-product';
-      totalElement = 'goku-total';
+    case product.goku: {
+      const gokuQuantity = updateProduct(
+        operation,
+        shoppingCart.gokuQuantity,
+        prices.goku,
+        'goku-product',
+        'goku-total'
+      );
+      shoppingCart.gokuQuantity = gokuQuantity;
       break;
-    case product.naruto:
-      if (operation === action.add) {
-        shoppingCart.narutoQuantity += 1;
-      } else if (shoppingCart.narutoQuantity > 0) {
-        shoppingCart.narutoQuantity -= 1;
-      }
-      units = shoppingCart.narutoQuantity;
-      price =
-        shoppingCart.narutoQuantity > 0
-          ? shoppingCart.narutoQuantity * prices.naruto
-          : 0;
-      inputElement = 'naruto-product';
-      totalElement = 'naruto-total';
+    }
+    case product.naruto: {
+      const narutoQuantity = updateProduct(
+        operation,
+        shoppingCart.narutoQuantity,
+        prices.naruto,
+        'naruto-product',
+        'naruto-total'
+      );
+      shoppingCart.narutoQuantity = narutoQuantity;
       break;
-    case product.jawa:
-      if (operation === action.add) {
-        shoppingCart.jawaQuantity += 1;
-      } else if (shoppingCart.jawaQuantity > 0) {
-        shoppingCart.jawaQuantity -= 1;
-      }
-      units = shoppingCart.jawaQuantity;
-      price =
-        shoppingCart.jawaQuantity > 0
-          ? shoppingCart.jawaQuantity * prices.jawa
-          : 0;
-      inputElement = 'jawa-product';
-      totalElement = 'jawa-total';
+    }
+    case product.jawa: {
+      const jawaQuantity = updateProduct(
+        operation,
+        shoppingCart.jawaQuantity,
+        prices.jawa,
+        'jawa-product',
+        'jawa-total'
+      );
+      shoppingCart.jawaQuantity = jawaQuantity;
       break;
+    }
     default:
       break;
   }
-  updateValue(inputElement, units);
-  updateInnerText(totalElement, `${price} €`);
   updateOrderSummary();
 };
 
